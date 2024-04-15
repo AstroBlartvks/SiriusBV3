@@ -1,0 +1,3833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1033</width>
+    <height>791</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PipeAnalysis</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Общий стиль для окна */
+QWidget {
+    background-color: white; /* Белый фон */
+    color: #1E90FF; /* Светло-синий текст */
+}
+
+/* Стиль для кнопок */
+QPushButton {
+    background-color: #1E90FF; /* Светло-синий */
+    color: white; /* Белый текст */
+    border: 2px solid #1E90FF;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #4682B4; /* Тесно-синий при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #0D47A1; /* Темно-синий при нажатии */
+}
+
+/* Стиль для меток */
+QLabel {
+    color: #1E90FF; /* Светло-синий текст */
+}
+
+/* Стиль для полей ввода */
+QLineEdit {
+    background-color: white; /* Белый фон */
+    color: #1E90FF; /* Светло-синий текст */
+    border: 2px solid #1E90FF;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QLineEdit:hover {
+    border: 2px solid #4682B4; /* Тесно-синий при наведении */
+}
+
+/* Стиль для списка */
+QListWidget {
+    background-color: white; /* Белый фон */
+    color: #1E90FF; /* Светло-синий текст */
+    border: 2px solid #1E90FF;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QListWidget:hover {
+    border: 2px solid #4682B4; /* Тесно-синий при наведении */
+}
+
+/* Стиль для таблицы */
+QTableWidget {
+    background-color: white; /* Белый фон */
+    color: #1E90FF; /* Светло-синий текст */
+    border: 2px solid #1E90FF;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QTableWidget:hover {
+    border: 2px solid #4682B4; /* Тесно-синий при наведении */
+}
+
+/* Стиль для комбо-бокса */
+QComboBox {
+    background-color: white; /* Белый фон */
+    color: #1E90FF; /* Светло-синий текст */
+    border: 2px solid #1E90FF;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QComboBox:hover {
+    border: 2px solid #4682B4; /* Тесно-синий при наведении */
+}
+
+QComboBox:pressed {
+    background-color: #0D47A1; /* Темно-синий при нажатии */
+    border: 2px solid #0D47A1;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">font: 16pt &quot;Ubuntu Mono&quot;;</string>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Газопровод</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <property name="spacing">
+         <number>2</number>
+        </property>
+        <property name="leftMargin">
+         <number>2</number>
+        </property>
+        <property name="topMargin">
+         <number>2</number>
+        </property>
+        <property name="rightMargin">
+         <number>2</number>
+        </property>
+        <property name="bottomMargin">
+         <number>2</number>
+        </property>
+        <item>
+         <widget class="QFrame" name="frame">
+          <property name="minimumSize">
+           <size>
+            <width>350</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>350</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <property name="leftMargin">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <property name="rightMargin">
+            <number>2</number>
+           </property>
+           <property name="bottomMargin">
+            <number>2</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="minimumSize">
+              <size>
+               <width>340</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>340</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Загрузить файл инспекции</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="minimumSize">
+              <size>
+               <width>340</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>340</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Сведения о трубопроводе</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_5">
+             <property name="minimumSize">
+              <size>
+               <width>350</width>
+               <height>610</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>350</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QListWidget" name="listWidget">
+                <property name="maximumSize">
+                 <size>
+                  <width>340</width>
+                  <height>16777200</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 12pt &quot;Ubuntu Mono&quot;;</string>
+                </property>
+                <property name="editTriggers">
+                 <set>QAbstractItemView::DoubleClicked</set>
+                </property>
+                <property name="movement">
+                 <enum>QListView::Static</enum>
+                </property>
+                <property name="resizeMode">
+                 <enum>QListView::Fixed</enum>
+                </property>
+                <property name="sortingEnabled">
+                 <bool>false</bool>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Название:</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>
+Длина трубопровода:</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>
+Диаметр трубопровода:</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>
+Диапазон толщины стенки:</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>
+Превалирующий тип сварного шва:</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>
+Мин. радиус изгиба колена:</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>
+Марка стали:</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>
+Условия во время нормального режима:
+• Давление:
+• Температура:
+• Среда:
+• Скорость потока среды:</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>
+Условия во время инспекции:
+• Давление:
+• Температура:
+• Контактная среда:
+• Скорость звука в контактной среде: 
+• Затухание в контактной среде:
+• Скорость инспекции (средняя):</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame_2">
+          <property name="minimumSize">
+           <size>
+            <width>660</width>
+            <height>730</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QFrame" name="frame_3">
+             <property name="minimumSize">
+              <size>
+               <width>660</width>
+               <height>200</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>200</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font: 12pt &quot;Ubuntu Mono&quot;;</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <property name="spacing">
+               <number>2</number>
+              </property>
+              <property name="leftMargin">
+               <number>1</number>
+              </property>
+              <property name="topMargin">
+               <number>1</number>
+              </property>
+              <property name="rightMargin">
+               <number>1</number>
+              </property>
+              <property name="bottomMargin">
+               <number>1</number>
+              </property>
+              <item>
+               <widget class="QTableWidget" name="tableWidget">
+                <property name="minimumSize">
+                 <size>
+                  <width>661</width>
+                  <height>131</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>131</height>
+                 </size>
+                </property>
+                <property name="gridStyle">
+                 <enum>Qt::SolidLine</enum>
+                </property>
+                <property name="sortingEnabled">
+                 <bool>false</bool>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <property name="cornerButtonEnabled">
+                 <bool>true</bool>
+                </property>
+                <attribute name="horizontalHeaderCascadingSectionResizes">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="horizontalHeaderStretchLastSection">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="verticalHeaderVisible">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="verticalHeaderCascadingSectionResizes">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="verticalHeaderStretchLastSection">
+                 <bool>true</bool>
+                </attribute>
+                <row>
+                 <property name="text">
+                  <string>1</string>
+                 </property>
+                </row>
+                <column>
+                 <property name="text">
+                  <string>№ попер.
+св. шва</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Абсол.
+расст.</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Контр./
+секция
+толщ. ст</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Остат.
+толщ. ст.</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Глубина
+дефекта</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Тип характ.
+особ.</string>
+                 </property>
+                </column>
+                <item row="0" column="0">
+                 <property name="text">
+                  <string>-</string>
+                 </property>
+                </item>
+                <item row="0" column="1">
+                 <property name="text">
+                  <string>-</string>
+                 </property>
+                </item>
+                <item row="0" column="2">
+                 <property name="text">
+                  <string>-</string>
+                 </property>
+                </item>
+                <item row="0" column="3">
+                 <property name="text">
+                  <string>-</string>
+                 </property>
+                </item>
+                <item row="0" column="4">
+                 <property name="text">
+                  <string>-</string>
+                 </property>
+                </item>
+                <item row="0" column="5">
+                 <property name="text">
+                  <string>-</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBox">
+                <property name="minimumSize">
+                 <size>
+                  <width>661</width>
+                  <height>31</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>31</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_4">
+             <property name="minimumSize">
+              <size>
+               <width>660</width>
+               <height>530</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QTabWidget" name="tabWidget_2">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 14pt &quot;Ubuntu Mono&quot;;</string>
+                </property>
+                <property name="currentIndex">
+                 <number>0</number>
+                </property>
+                <widget class="QWidget" name="tab_3">
+                 <attribute name="title">
+                  <string>Толщина стенки</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_4">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QWidget" name="widget" native="true"/>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="tab_4">
+                 <attribute name="title">
+                  <string>Потери металла</string>
+                 </attribute>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QWidget" name="widget_2" native="true"/>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="tab_5">
+                 <attribute name="title">
+                  <string>2D</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_3">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QWidget" name="widget_3" native="true"/>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="tab_6">
+                 <attribute name="title">
+                  <string>3D (В разработке)</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_2">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QOpenGLWidget" name="openGLWidget">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Секции</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>2</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QStackedWidget" name="stackedWidget">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="page">
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QFrame" name="frame_7">
+              <property name="minimumSize">
+               <size>
+                <width>1020</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="minimumSize">
+                  <size>
+                   <width>900</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>65556</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Подробная информация</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_2">
+                 <property name="minimumSize">
+                  <size>
+                   <width>115</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>115</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>-&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_6">
+              <property name="minimumSize">
+               <size>
+                <width>1020</width>
+                <height>200</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>1</number>
+               </property>
+               <property name="topMargin">
+                <number>1</number>
+               </property>
+               <property name="rightMargin">
+                <number>1</number>
+               </property>
+               <property name="bottomMargin">
+                <number>1</number>
+               </property>
+               <item>
+                <widget class="QTableWidget" name="tableWidget_2">
+                 <property name="styleSheet">
+                  <string notr="true">font: 12pt &quot;Ubuntu Mono&quot;;</string>
+                 </property>
+                 <attribute name="horizontalHeaderMinimumSectionSize">
+                  <number>35</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>80</number>
+                 </attribute>
+                 <attribute name="verticalHeaderMinimumSectionSize">
+                  <number>35</number>
+                 </attribute>
+                 <attribute name="verticalHeaderDefaultSectionSize">
+                  <number>35</number>
+                 </attribute>
+                 <row>
+                  <property name="text">
+                   <string>1</string>
+                  </property>
+                 </row>
+                 <column>
+                  <property name="text">
+                   <string>Попер.
+св. шва</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>ID х.о./
+маркера</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Абсол.
+расст.
+[м]</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Расст. до
+шва вверх
+по ходу
+[м]</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Полож.
+по
+окруж.
+[°]</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Контр./
+секция
+толщ. ст.
+[мм]</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Остат.
+толщ.
+ст.
+[мм]</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Глубина
+[мм]</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Глубина
+[%]</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Длина
+секции
+[м]</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Длина
+[мм]</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Ширина
+[мм]</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Тип
+характ.
+особ.</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Подтип</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Примечание</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Отн.
+пол.</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Полож.
+в стенке</string>
+                  </property>
+                 </column>
+                 <item row="0" column="12">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="page_2">
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>1</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QFrame" name="frame_8">
+              <property name="minimumSize">
+               <size>
+                <width>1020</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_9">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="minimumSize">
+                  <size>
+                   <width>900</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>65556</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Графическое представление</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_3">
+                 <property name="minimumSize">
+                  <size>
+                   <width>115</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>115</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>-&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTabWidget" name="tabWidget_3">
+              <property name="styleSheet">
+               <string notr="true">font: 14pt &quot;Ubuntu Mono&quot;;</string>
+              </property>
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <widget class="QWidget" name="tab_10">
+               <attribute name="title">
+                <string>.</string>
+               </attribute>
+              </widget>
+              <widget class="QWidget" name="tab_7">
+               <attribute name="title">
+                <string>Толщина стенки 360°</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="verticalLayout_8">
+                <property name="spacing">
+                 <number>2</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QComboBox" name="comboBox">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>-</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_4" native="true"/>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="tab_8">
+               <attribute name="title">
+                <string>Объемная модель трубы</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="verticalLayout_9">
+                <property name="spacing">
+                 <number>2</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QComboBox" name="comboBox_2">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>-</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="VTKFrame">
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="page_3">
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>2</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QFrame" name="frame_9">
+              <property name="minimumSize">
+               <size>
+                <width>1020</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_10">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="minimumSize">
+                  <size>
+                   <width>900</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>65556</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Выявление дефектов на секции</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_4">
+                 <property name="minimumSize">
+                  <size>
+                   <width>115</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>115</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>-&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBox_3">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string>-</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_10">
+              <property name="styleSheet">
+               <string notr="true">font: 16pt &quot;Ubuntu Mono&quot;;</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_11">
+               <property name="spacing">
+                <number>2</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QScrollArea" name="scrollArea">
+                 <property name="verticalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOn</enum>
+                 </property>
+                 <property name="horizontalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOn</enum>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QAbstractScrollArea::AdjustIgnored</enum>
+                 </property>
+                 <property name="widgetResizable">
+                  <bool>false</bool>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>1901</width>
+                    <height>1061</height>
+                   </rect>
+                  </property>
+                  <widget class="QGroupBox" name="groupBox">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>30</y>
+                     <width>1191</width>
+                     <height>121</height>
+                    </rect>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true"/>
+                   </property>
+                   <property name="title">
+                    <string>Нахождение максимальной глубины дефекта</string>
+                   </property>
+                   <widget class="QLineEdit" name="lineEdit">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>270</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>270</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>270</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 12pt &quot;Ubuntu Mono&quot;;</string>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Толщина стенки секции</string>
+                    </property>
+                   </widget>
+                   <widget class="QLineEdit" name="lineEdit_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>70</y>
+                      <width>270</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>270</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>270</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 12pt &quot;Ubuntu Mono&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Рабочее давление МПа (бар/10)</string>
+                    </property>
+                   </widget>
+                   <widget class="QFrame" name="frame_11">
+                    <property name="geometry">
+                     <rect>
+                      <x>290</x>
+                      <y>30</y>
+                      <width>270</width>
+                      <height>35</height>
+                     </rect>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>270</width>
+                      <height>35</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>270</width>
+                      <height>35</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_11">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLabel" name="label_6">
+                       <property name="minimumSize">
+                        <size>
+                         <width>150</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">font: 12pt &quot;Ubuntu Mono&quot;;</string>
+                       </property>
+                       <property name="text">
+                        <string>Категория участка: </string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="comboBox_4">
+                       <property name="minimumSize">
+                        <size>
+                         <width>100</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">font: 10pt &quot;Ubuntu Mono&quot;;</string>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>B</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>I и II</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>III и IV</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                   <widget class="QLineEdit" name="lineEdit_3">
+                    <property name="geometry">
+                     <rect>
+                      <x>570</x>
+                      <y>30</y>
+                      <width>330</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>330</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>330</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Время работы с момента ввода в эксплуатацию </string>
+                    </property>
+                   </widget>
+                   <widget class="QLineEdit" name="lineEdit_4">
+                    <property name="geometry">
+                     <rect>
+                      <x>570</x>
+                      <y>70</y>
+                      <width>330</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>330</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>330</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Срок безопасной эксплуатации трубы</string>
+                    </property>
+                   </widget>
+                   <widget class="QLineEdit" name="lineEdit_5">
+                    <property name="geometry">
+                     <rect>
+                      <x>290</x>
+                      <y>70</y>
+                      <width>270</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>270</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>270</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 12pt &quot;Ubuntu Mono&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Коэффициент Фолиаса</string>
+                    </property>
+                   </widget>
+                   <widget class="QPushButton" name="pushButton_5">
+                    <property name="geometry">
+                     <rect>
+                      <x>910</x>
+                      <y>30</y>
+                      <width>270</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string>Рассчитать</string>
+                    </property>
+                   </widget>
+                   <widget class="QLineEdit" name="lineEdit_11">
+                    <property name="geometry">
+                     <rect>
+                      <x>910</x>
+                      <y>70</y>
+                      <width>281</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;
+border:none;
+background-color: rgba(255, 255, 255, 0);</string>
+                    </property>
+                    <property name="text">
+                     <string>Максимальная глубина:</string>
+                    </property>
+                   </widget>
+                  </widget>
+                  <widget class="QGroupBox" name="groupBox_2">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>150</y>
+                     <width>1191</width>
+                     <height>71</height>
+                    </rect>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true"/>
+                   </property>
+                   <property name="title">
+                    <string>Коэффицент Фолиаса</string>
+                   </property>
+                   <widget class="QLineEdit" name="lineEdit_6">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>551</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>270</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>15555555</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 12pt &quot;Ubuntu Mono&quot;;</string>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Коэффицент трубы в диапазоне (1.31, 1.61). Обычно 1.32 или 1.61</string>
+                    </property>
+                   </widget>
+                   <widget class="QLineEdit" name="lineEdit_7">
+                    <property name="geometry">
+                     <rect>
+                      <x>910</x>
+                      <y>30</y>
+                      <width>281</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;
+border:none;
+background-color: rgba(255, 255, 255, 0);</string>
+                    </property>
+                    <property name="text">
+                     <string>Коэффицент Фолиаса:</string>
+                    </property>
+                   </widget>
+                   <widget class="QPushButton" name="pushButton_6">
+                    <property name="geometry">
+                     <rect>
+                      <x>570</x>
+                      <y>30</y>
+                      <width>331</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string>Рассчитать</string>
+                    </property>
+                   </widget>
+                  </widget>
+                  <widget class="QGroupBox" name="groupBox_3">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>230</y>
+                     <width>1191</width>
+                     <height>71</height>
+                    </rect>
+                   </property>
+                   <property name="title">
+                    <string>Напряжение течения</string>
+                   </property>
+                   <widget class="QLineEdit" name="lineEdit_8">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>361</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>270</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16666666</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 12pt &quot;Ubuntu Mono&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Время работы с момента ввода в эксплуатацию </string>
+                    </property>
+                   </widget>
+                   <widget class="QLineEdit" name="lineEdit_9">
+                    <property name="geometry">
+                     <rect>
+                      <x>380</x>
+                      <y>30</y>
+                      <width>281</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>270</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16666666</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 12pt &quot;Ubuntu Mono&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Срок безопасной эксплуатации трубы</string>
+                    </property>
+                   </widget>
+                   <widget class="QPushButton" name="pushButton_7">
+                    <property name="geometry">
+                     <rect>
+                      <x>670</x>
+                      <y>30</y>
+                      <width>231</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;</string>
+                    </property>
+                    <property name="text">
+                     <string>Рассчитать</string>
+                    </property>
+                   </widget>
+                   <widget class="QLineEdit" name="lineEdit_10">
+                    <property name="geometry">
+                     <rect>
+                      <x>910</x>
+                      <y>30</y>
+                      <width>281</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;
+border:none;
+background-color: rgba(255, 255, 255, 0);</string>
+                    </property>
+                    <property name="text">
+                     <string>Напряжение течения:</string>
+                    </property>
+                   </widget>
+                  </widget>
+                  <widget class="QLabel" name="label_7">
+                   <property name="geometry">
+                    <rect>
+                     <x>13</x>
+                     <y>0</y>
+                     <width>1181</width>
+                     <height>31</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>Определенный тип дефекта: </string>
+                   </property>
+                  </widget>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_9">
+       <attribute name="title">
+        <string>Нейросеть</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_13">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>6</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QFrame" name="frame_12">
+          <property name="minimumSize">
+           <size>
+            <width>1021</width>
+            <height>42</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>42</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QFrame {
+border: 2px solid #1E90FF;;
+border-radius: 6px;
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_12">
+           <property name="spacing">
+            <number>3</number>
+           </property>
+           <property name="leftMargin">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="pushButton_8">
+             <property name="minimumSize">
+              <size>
+               <width>270</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>270</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Рассчитать</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_12">
+             <property name="styleSheet">
+              <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;
+border:none;
+background-color: rgba(255, 255, 255, 0);</string>
+             </property>
+             <property name="text">
+              <string>Суммарная приведенная длина дефектов:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame_13">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QFrame" name="frame_14">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>164</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>164</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_13">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QTableWidget" name="tableWidget_3">
+                <property name="minimumSize">
+                 <size>
+                  <width>1011</width>
+                  <height>161</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>161</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font-size: 16pt;</string>
+                </property>
+                <attribute name="horizontalHeaderMinimumSectionSize">
+                 <number>129</number>
+                </attribute>
+                <attribute name="horizontalHeaderDefaultSectionSize">
+                 <number>129</number>
+                </attribute>
+                <attribute name="verticalHeaderMinimumSectionSize">
+                 <number>80</number>
+                </attribute>
+                <attribute name="verticalHeaderDefaultSectionSize">
+                 <number>80</number>
+                </attribute>
+                <row>
+                 <property name="text">
+                  <string>Значения</string>
+                 </property>
+                </row>
+                <column>
+                 <property name="text">
+                  <string>Полож.
+по окруж.
+[°]</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Толщ.
+стенки [мм]</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Остат. толщ.
+стенки [мм]</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Глубина
+[мм]</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Глубина
+[%]</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Длина
+[мм]</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Ширина
+[мм]</string>
+                 </property>
+                </column>
+                <item row="0" column="0">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
+                 </property>
+                </item>
+                <item row="0" column="1">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
+                 </property>
+                </item>
+                <item row="0" column="2">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
+                 </property>
+                </item>
+                <item row="0" column="3">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
+                 </property>
+                </item>
+                <item row="0" column="4">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
+                 </property>
+                </item>
+                <item row="0" column="5">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
+                 </property>
+                </item>
+                <item row="0" column="6">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="textAlignment">
+                  <set>AlignCenter</set>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_15">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_14">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QFrame" name="frame_16">
+                <property name="minimumSize">
+                 <size>
+                  <width>272</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>272</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_15">
+                 <property name="spacing">
+                  <number>2</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_9">
+                   <property name="minimumSize">
+                    <size>
+                     <width>270</width>
+                     <height>35</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>270</width>
+                     <height>35</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;</string>
+                   </property>
+                   <property name="text">
+                    <string>Использовать нейросеть</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QListWidget" name="listWidget_2">
+                   <property name="styleSheet">
+                    <string notr="true">font: 12pt &quot;Ubuntu Mono&quot;;</string>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>1. Cвяз. с производством
+(Потеря металла)
+0.0</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>2. Отложения
+(Геометрия)
+0.0</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>3. Внешние воздействия
+(Потеря металла)
+0.0</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>4. Действия человека
+(Изменение толщ. ст.)
+0.0</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>5. Нет особенностей
+(Дефектов не обнаружено)
+0.0</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_10">
+                   <property name="styleSheet">
+                    <string notr="true">font: 11pt &quot;Ubuntu Mono&quot;;</string>
+                   </property>
+                   <property name="text">
+                    <string>Загрузить модель</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_17">
+                <property name="styleSheet">
+                 <string notr="true">QFrame {
+border: 2px solid #1E90FF;
+border-radius: 6px;
+}</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_15">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>1</number>
+                 </property>
+                 <item>
+                  <widget class="QWidget" name="widget_5" native="true"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_11">
+       <attribute name="title">
+        <string>Конструктор</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_16">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTabWidget" name="tabWidget_4">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_12">
+           <attribute name="title">
+            <string>Настройка</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_17">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QScrollArea" name="scrollArea_2">
+              <property name="verticalScrollBarPolicy">
+               <enum>Qt::ScrollBarAsNeeded</enum>
+              </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents_2">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>1019</width>
+                 <height>697</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_16">
+                <property name="spacing">
+                 <number>6</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QFrame" name="frame_21">
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_20">
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_10">
+                     <property name="minimumSize">
+                      <size>
+                       <width>490</width>
+                       <height>360</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">font-size:16px;</string>
+                     </property>
+                     <property name="title">
+                      <string>Основная настройка</string>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_22">
+                      <property name="spacing">
+                       <number>6</number>
+                      </property>
+                      <property name="leftMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>6</number>
+                      </property>
+                      <item>
+                       <widget class="QLabel" name="label_16">
+                        <property name="styleSheet">
+                         <string notr="true">font-weight: bold;</string>
+                        </property>
+                        <property name="text">
+                         <string>Количество входных параметров</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_21">
+                        <property name="styleSheet">
+                         <string notr="true">QLineEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QLineEdit:hover {
+    background-color: #E0E0E0;
+}
+
+QLineEdit:focused {
+    border: 1px solid #0077C9;
+}
+</string>
+                        </property>
+                        <property name="placeholderText">
+                         <string>10</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_17">
+                        <property name="styleSheet">
+                         <string notr="true">font-weight: bold;</string>
+                        </property>
+                        <property name="text">
+                         <string>Количество выходных параметров</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_22">
+                        <property name="styleSheet">
+                         <string notr="true">QLineEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QLineEdit:hover {
+    background-color: #E0E0E0;
+}
+
+QLineEdit:focused {
+    border: 1px solid #0077C9;
+}
+</string>
+                        </property>
+                        <property name="placeholderText">
+                         <string>10</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_39">
+                        <property name="styleSheet">
+                         <string notr="true">font-weight: bold;</string>
+                        </property>
+                        <property name="text">
+                         <string>Выбор функции оптимизации</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_15">
+                        <property name="styleSheet">
+                         <string notr="true">QComboBox
+{
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+QComboBox:hover
+{
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+QComboBox:!enabled
+{
+    background-color: rgb(230, 230, 230);
+}
+</string>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>Adam</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>SGD</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_40">
+                        <property name="styleSheet">
+                         <string notr="true">font-weight: bold;</string>
+                        </property>
+                        <property name="text">
+                         <string>Количество слоёв</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_16">
+                        <property name="styleSheet">
+                         <string notr="true">QComboBox
+{
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+QComboBox:hover
+{
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+QComboBox:!enabled
+{
+    background-color: rgb(230, 230, 230);
+}
+</string>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>1</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>2</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>3</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>4</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>5</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>6</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>7</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>8</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>9</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>10</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_46">
+                        <property name="font">
+                         <font>
+                          <family>Ubuntu Mono</family>
+                          <pointsize>-1</pointsize>
+                          <weight>75</weight>
+                          <italic>false</italic>
+                          <bold>true</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">font-weight: bold;</string>
+                        </property>
+                        <property name="text">
+                         <string>Наличие модели</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_45">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QLabel {
+    background-color: white;
+    color: #aa0000;
+	font-size: 20px;
+}</string>
+                        </property>
+                        <property name="text">
+                         <string>Нет</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_53">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Создать модель</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_9">
+                     <property name="minimumSize">
+                      <size>
+                       <width>490</width>
+                       <height>360</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">font-size:16px;</string>
+                     </property>
+                     <property name="title">
+                      <string>Информация о слое</string>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_21">
+                      <property name="leftMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>6</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>6</number>
+                      </property>
+                      <item>
+                       <widget class="QLabel" name="label_32">
+                        <property name="styleSheet">
+                         <string notr="true">font-weight: bold;</string>
+                        </property>
+                        <property name="text">
+                         <string>Номер слоя</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_12">
+                        <property name="styleSheet">
+                         <string notr="true">QComboBox
+{
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+QComboBox:hover
+{
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+QComboBox:!enabled
+{
+    background-color: rgb(230, 230, 230);
+}
+</string>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>1</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_33">
+                        <property name="styleSheet">
+                         <string notr="true">font-weight: bold;</string>
+                        </property>
+                        <property name="text">
+                         <string>Количество входных параметров</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_17">
+                        <property name="styleSheet">
+                         <string notr="true">QLineEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QLineEdit:hover {
+    background-color: #E0E0E0;
+}
+
+QLineEdit:focused {
+    border: 1px solid #0077C9;
+}
+</string>
+                        </property>
+                        <property name="placeholderText">
+                         <string>10</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_34">
+                        <property name="styleSheet">
+                         <string notr="true">font-weight: bold;</string>
+                        </property>
+                        <property name="text">
+                         <string>Количество выходных параметров</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_18">
+                        <property name="styleSheet">
+                         <string notr="true">QLineEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QLineEdit:hover {
+    background-color: #E0E0E0;
+}
+
+QLineEdit:focused {
+    border: 1px solid #0077C9;
+}
+</string>
+                        </property>
+                        <property name="placeholderText">
+                         <string>10</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_35">
+                        <property name="styleSheet">
+                         <string notr="true">font-weight: bold;</string>
+                        </property>
+                        <property name="text">
+                         <string>Тип слоя</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_13">
+                        <property name="styleSheet">
+                         <string notr="true">QComboBox
+{
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+QComboBox:hover
+{
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+QComboBox:!enabled
+{
+    background-color: rgb(230, 230, 230);
+}
+</string>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>FC</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>RNN</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>LSTM</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>GRU</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_38">
+                        <property name="styleSheet">
+                         <string notr="true">font-weight: bold;</string>
+                        </property>
+                        <property name="text">
+                         <string>Функция активации</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_14">
+                        <property name="styleSheet">
+                         <string notr="true">QComboBox
+{
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+QComboBox:hover
+{
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+QComboBox:!enabled
+{
+    background-color: rgb(230, 230, 230);
+}
+</string>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>Sigmoid</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>ReLU</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Tanh</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Softmax</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_50">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Сохранить слой</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_22">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>200</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_21">
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_11">
+                     <property name="minimumSize">
+                      <size>
+                       <width>490</width>
+                       <height>130</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>200</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">font-size:16px;</string>
+                     </property>
+                     <property name="title">
+                      <string>Загрузка/Сохранение модели</string>
+                     </property>
+                     <layout class="QFormLayout" name="formLayout_5">
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="label_42">
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Путь:</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0" colspan="2">
+                       <widget class="QPlainTextEdit" name="plainTextEdit_6">
+                        <property name="minimumSize">
+                         <size>
+                          <width>400</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QPlainTextEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 5px;
+	font-size: 12px;
+}
+
+QPlainTextEdit:hover {
+    background-color: #E0E0E0;
+}
+
+QPlainTextEdit:focused {
+    border: 1px solid #0077C9;
+}
+</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                        <property name="plainText">
+                         <string/>
+                        </property>
+                        <property name="placeholderText">
+                         <string>Здесь будет путь до вашей модели</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="0">
+                       <widget class="QPushButton" name="pushButton_56">
+                        <property name="minimumSize">
+                         <size>
+                          <width>200</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Сохранить</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QPushButton" name="pushButton_57">
+                        <property name="minimumSize">
+                         <size>
+                          <width>200</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Загрузить</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_8">
+                     <property name="minimumSize">
+                      <size>
+                       <width>490</width>
+                       <height>130</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>200</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">font-size:16px;</string>
+                     </property>
+                     <property name="title">
+                      <string>Загрузка базы для обучения</string>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_18">
+                      <item>
+                       <widget class="QLabel" name="label_41">
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Путь:</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPlainTextEdit" name="plainTextEdit_5">
+                        <property name="minimumSize">
+                         <size>
+                          <width>400</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QPlainTextEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 5px;
+	font-size: 12px;
+}
+
+QPlainTextEdit:hover {
+    background-color: #E0E0E0;
+}
+
+QPlainTextEdit:focused {
+    border: 1px solid #0077C9;
+}
+</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                        <property name="plainText">
+                         <string/>
+                        </property>
+                        <property name="placeholderText">
+                         <string>Здесь будет путь до вашей базы</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_55">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Выберите путь</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBox_4">
+                  <property name="minimumSize">
+                   <size>
+                    <width>890</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">font-size:16px;</string>
+                  </property>
+                  <property name="title">
+                   <string>Дополнительная настройка</string>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_18">
+                   <property name="spacing">
+                    <number>6</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>3</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>3</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>3</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>8</number>
+                   </property>
+                   <item>
+                    <widget class="Line" name="line_4">
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(0, 0, 0);</string>
+                     </property>
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_29">
+                     <property name="styleSheet">
+                      <string notr="true">font-weight: bold;</string>
+                     </property>
+                     <property name="text">
+                      <string>Сохранить модель:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_51">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>35</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>150</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>Сохранить модель</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="Line" name="line">
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(0, 0, 0);</string>
+                     </property>
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_24">
+                     <property name="styleSheet">
+                      <string notr="true">font-weight: bold;</string>
+                     </property>
+                     <property name="text">
+                      <string>Обучение:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="comboBox_7">
+                     <property name="styleSheet">
+                      <string notr="true">QComboBox
+{
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+QComboBox:hover
+{
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+QComboBox:!enabled
+{
+    background-color: rgb(230, 230, 230);
+}
+</string>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>CPU</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>CUDA</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="Line" name="line_2">
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(0, 0, 0);</string>
+                     </property>
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_21">
+                     <property name="styleSheet">
+                      <string notr="true">font-weight: bold;</string>
+                     </property>
+                     <property name="text">
+                      <string>Работа слоёв:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="comboBox_6">
+                     <property name="styleSheet">
+                      <string notr="true">QComboBox
+{
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+QComboBox:hover
+{
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+QComboBox:!enabled
+{
+    background-color: rgb(230, 230, 230);
+}
+</string>
+                     </property>
+                     <property name="editable">
+                      <bool>false</bool>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>CPU</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>CUDA</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="Line" name="line_3">
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(0, 0, 0);</string>
+                     </property>
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_22">
+                     <property name="styleSheet">
+                      <string notr="true">font-weight: bold;</string>
+                     </property>
+                     <property name="text">
+                      <string>Наличие CUDA:</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_23">
+                     <property name="maximumSize">
+                      <size>
+                       <width>50</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>True</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="Line" name="line_5">
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(0, 0, 0);</string>
+                     </property>
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_13">
+           <attribute name="title">
+            <string>Обучение</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_17">
+            <property name="spacing">
+             <number>5</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QFrame" name="frame_18">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>300</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>300</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font-size:16px;</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_19">
+               <item>
+                <widget class="QFrame" name="frame_20">
+                 <property name="maximumSize">
+                  <size>
+                   <width>300</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_20">
+                  <item>
+                   <widget class="QLabel" name="label_30">
+                    <property name="styleSheet">
+                     <string notr="true"/>
+                    </property>
+                    <property name="text">
+                     <string>Количество эпох:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_20">
+                    <property name="styleSheet">
+                     <string notr="true">QLineEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QLineEdit:hover {
+    background-color: #E0E0E0;
+}
+
+QLineEdit:focused {
+    border: 1px solid #0077C9;
+}
+</string>
+                    </property>
+                    <property name="placeholderText">
+                     <string>10</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_31">
+                    <property name="styleSheet">
+                     <string notr="true"/>
+                    </property>
+                    <property name="text">
+                     <string>Коэфицент скорости обучения:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_19">
+                    <property name="styleSheet">
+                     <string notr="true">QLineEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QLineEdit:hover {
+    background-color: #E0E0E0;
+}
+
+QLineEdit:focused {
+    border: 1px solid #0077C9;
+}
+</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>0.0001</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_52">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>35</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true"/>
+                    </property>
+                    <property name="text">
+                     <string>Начать обучение</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_8">
+                    <property name="text">
+                     <string>Среднеквадратичная: 0.04794
+Точность: 93%</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QListWidget" name="listWidget_3">
+                 <property name="styleSheet">
+                  <string notr="true">QListWidget {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+QListWidget::item {
+    padding: 5px;
+}
+
+QListWidget::item:selected {
+    background-color: lightblue;
+}
+</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Новый элемент</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Новый элемент</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Новый элемент</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Новый элемент</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Новый элемент</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Новый элемент</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Новый элемент</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Новый элемент</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Новый элемент</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Новый элемент</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>22: MSE: 0.06721</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>23: MSE: 0.06573</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>24: MSE: 0.06123</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>25: MSE: 0.05754</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>26: MSE: 0.04998</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>27: MSE: 0.04921</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>28: MSE: 0.04864</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>29: MSE: 0.04834</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>30: MSE: 0.04794</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_19">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QGridLayout" name="gridLayout">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item row="0" column="0">
+                <widget class="QWidget" name="widget_6" native="true"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

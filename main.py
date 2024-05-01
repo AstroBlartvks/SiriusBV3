@@ -125,6 +125,8 @@ class mywindow(QtWidgets.QMainWindow):
         loss_train = 1 - sum(self.Training_class.global_history[2]) / len(self.Training_class.global_history[2])
         loss = (loss_test + loss_valid + loss_train) / 3
         self.ui.label_8.setText(f"Среднеквадратичная: {round(loss, 5)}\nТочность: {round(100*(loss**1.3))}%")
+
+        self.nn_model = self.Training_class.model
      
 
     def load_dataset(self):
@@ -136,14 +138,15 @@ class mywindow(QtWidgets.QMainWindow):
             self.dataset_path = None
 
 
-    def save_model(self, path=False):
+    def save_model(self, path=False, restart=False):
         if [0, 0, 0, 0] in self.model_sequence:
             self.show_critical_msg("Нейросеть ошибка", "Неполная модель, не все слои заполнены")
             self.ui.label_45.setText(f"Нет")
             return
 
         self.ui.label_45.setText(f"Да | {str(datetime.datetime.now())[11:19]}")
-        self.nn_model = ModelCreate(self.model_sequence)
+        if self.nn_model is None or restart:
+            self.nn_model = ModelCreate(self.model_sequence)
 
         if path:
             self.dir_model = QtWidgets.QFileDialog.getExistingDirectory(self,"Выбрать папку",".") + "\\"
@@ -157,7 +160,7 @@ class mywindow(QtWidgets.QMainWindow):
         self.optimizer = self.ui.comboBox_15.currentText()
 
         self.ui.plainTextEdit_6.setPlainText("Сохранено в папке:\n"+str(self.dir_model)+"\n"+str(self.nn_model))
-        pytorch_loaded = True
+        self.pytorch_loaded = True
 
 
     def load_layer(self):
@@ -566,8 +569,8 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.pushButton_10.clicked.connect(self.load_nn_model)
         self.ui.pushButton_53.clicked.connect(self.create_model)
         self.ui.pushButton_50.clicked.connect(self.save_layer)
-        self.ui.pushButton_51.clicked.connect(self.save_model)
-        self.ui.pushButton_56.clicked.connect(lambda: self.save_model(True))
+        self.ui.pushButton_51.clicked.connect(lambda: self.save_model(False, True))
+        self.ui.pushButton_56.clicked.connect(lambda: self.save_model(True, False))
         self.ui.pushButton_57.clicked.connect(self.load_nn_model)
 
         self.ui.pushButton_55.clicked.connect(self.load_dataset)

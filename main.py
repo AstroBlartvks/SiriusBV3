@@ -7,17 +7,19 @@ import vtk
 from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 
 import sys
+import os
 import math
+import json
 import threading
 import datetime
 
 from resources.database_handler import WorkBook
 from resources.database_handler import generate_black_image_2, generate_color_spectrum_image_2
-from resources.pipeline_widget2D import PipelineWidget, MplCanvas_ver2, MplHeatmap, PieGraph
+from resources.pipeline_widget2D import PipelineWidget, MplCanvas_ver2, MplHeatmap, PieGraph, LearningGraph
 from resources.pipeline_widget2D import save_image_texture
 from resources.pipeline_widget3D import CylinderWidget
 
-from model_creator import ModelCreate, Training
+from model_creator import ModelCreate, Training, temp_handler, is_cuda, save_model_path
 
 import torch
 import torch.nn as nn
@@ -56,22 +58,85 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.workbook = WorkBook()              #WorkBook для работы с excel
+        self.workbook = WorkBook()                  #WorkBook для работы с excel
         
-        self.pipeline_map_3D_created = False    #Костыль для отображения 3Д карты
-        self.pipe_3D_created = False            #Костыль для отображения 3D pipe
-        self.choosen_pipeline = None            #Переменная класса - выбранный газопровод
+        self.pipeline_map_3D_created = False        #Костыль для отображения 3Д карты
+        self.pipe_3D_created = False                #Костыль для отображения 3D pipe
+        self.choosen_pipeline = None                #Переменная класса - выбранный газопровод
 
         self.pytorch_model = MyModel(input_size=7, hidden_size=32, output_size=5)
         self.pytorch_loaded = False
-        self.nn_model = None
+        self.nn_model = None                        #Модель нейронной сети
+        self.optimizer = None                       #Оптимизатор
+        self.dataset_path = None                    #Путь до базы данных
+        self.model_sequence = []                    #Настриваемая модель
 
-        self.model_sequence = []
+        if not is_cuda():                           #Проверка наличия cuda
+            self.ui.comboBox_7.setEnabled(False)
+            self.ui.comboBox_6.setEnabled(False)
+            self.ui.label_23.setText("False")
 
-        self.navigate_buttons()                 #Подключение навигационных кнопок
+        self.navigate_buttons()                     #Подключение навигационных кнопок
 
 
-    def save_model(self):
+    def load_nn_model(self):
+        self.dir_model = QtWidgets.QFileDialog.getExistingDirectory(self,"Выбрать папку",".") + "\\"
+
+        with open(self.dir_model+"model_temp_save.json", "r") as read_file:
+            data = json.load(read_file)
+        
+        self.model_sequence = data[:-1] 
+        self.optimizer = data[-1]["optim"]
+        self.nn_model = ModelCreate(self.model_sequence)
+        self.nn_model.load_state_dict(torch.load(self.dir_model+"model.pt"))
+        self.ui.label_45.setText(f"Загружена | {str(datetime.datetime.now())[11:19]}")
+        self.ui.plainTextEdit_6.setPlainText(self.dir_model+"\n"+str(self.nn_model))
+        self.pytorch_loaded = True
+
+
+    def start_training(self):
+        if self.dataset_path is None:
+            self.show_critical_msg("Датасет", "Датасет не был загружен")
+            return
+        
+        device = "cuda:0" if "CUDA" in [self.ui.comboBox_7.currentText(), self.ui.comboBox_6.currentText()] else "cpu"
+        self.Training_class = Training(self.nn_model, self.model_sequence[0][1], self.model_sequence[-1][2], self.dataset_path, device)
+        self.Training_class.prepare_dataset()
+        
+        verbs = self.Training_class.train(self.optimizer, float(self.ui.lineEdit_19.text()), int(self.ui.lineEdit_20.text()))
+
+        if isinstance(self.ui.widget_6, QtWidgets.QVBoxLayout):
+            self.ui.widget_6.removeWidget(self.graph_learning_hist)
+
+        self.graph_learning_hist = LearningGraph([list(range(len(self.Training_class.global_history[0]))), list(range(len(self.Training_class.global_history[0]))), list(range(len(self.Training_class.global_history[0])))]
+                                , self.Training_class.global_history, ["Test", "Valid", "Train"], orientation="h", labelXY = ["Номер сегмента", "Значение"])
+
+        if not isinstance(self.ui.widget_6, QtWidgets.QVBoxLayout):
+            self.ui.widget_6 = QtWidgets.QVBoxLayout(self.ui.widget_6)
+            self.ui.widget_6.setObjectName("widget_6")
+
+        self.ui.widget_6.addWidget(self.graph_learning_hist)
+    
+        self.ui.listWidget_3.clear()
+        self.ui.listWidget_3.addItems(verbs)
+
+        loss_test = 1 - sum(self.Training_class.global_history[0]) / len(self.Training_class.global_history[0])
+        loss_valid = 1 - sum(self.Training_class.global_history[1]) / len(self.Training_class.global_history[1])
+        loss_train = 1 - sum(self.Training_class.global_history[2]) / len(self.Training_class.global_history[2])
+        loss = (loss_test + loss_valid + loss_train) / 3
+        self.ui.label_8.setText(f"Среднеквадратичная: {round(loss, 5)}\nТочность: {round(100*(loss**1.3))}%")
+     
+
+    def load_dataset(self):
+        try:
+            self.dataset_path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Выбрать файл для обучения",".", "Excel (*.xlsx);CSV (*.csv);All Files (*)")
+            self.ui.plainTextEdit_5.setPlainText(str(self.dataset_path))
+        except Exception as exp:
+            self.show_critical_msg("Ошибка при загрузке датасета", str(exp))
+            self.dataset_path = None
+
+
+    def save_model(self, path=False):
         if [0, 0, 0, 0] in self.model_sequence:
             self.show_critical_msg("Нейросеть ошибка", "Неполная модель, не все слои заполнены")
             self.ui.label_45.setText(f"Нет")
@@ -79,7 +144,20 @@ class mywindow(QtWidgets.QMainWindow):
 
         self.ui.label_45.setText(f"Да | {str(datetime.datetime.now())[11:19]}")
         self.nn_model = ModelCreate(self.model_sequence)
-        print(self.nn_model)
+
+        if path:
+            self.dir_model = QtWidgets.QFileDialog.getExistingDirectory(self,"Выбрать папку",".") + "\\"
+        else:
+            self.dir_model = os.getcwd() + "\\"
+
+        with open(self.dir_model+"model_temp_save.json", "w") as write_file:
+            json.dump(self.model_sequence + [{"optim": self.ui.comboBox_15.currentText()}], write_file)
+        
+        save_model_path(self.nn_model, self.dir_model)
+        self.optimizer = self.ui.comboBox_15.currentText()
+
+        self.ui.plainTextEdit_6.setPlainText("Сохранено в папке:\n"+str(self.dir_model)+"\n"+str(self.nn_model))
+        pytorch_loaded = True
 
 
     def load_layer(self):
@@ -89,6 +167,12 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.lineEdit_18.clear()
         self.ui.comboBox_13.setCurrentIndex(0)
         self.ui.comboBox_14.setCurrentIndex(0)
+
+        if index > 0 and self.model_sequence[index - 1][1] != 0:
+            self.ui.lineEdit_17.setText(str(self.model_sequence[index - 1][2]))
+        elif index == 0:
+            self.ui.lineEdit_17.setText(str(self.ui.lineEdit_21.text()))
+
         if layer == [0, 0, 0, 0]: return
         self.ui.comboBox_13.setCurrentIndex({"FC": 0, "RNN": 1, "LSTM": 2, "GRU": 3}[self.model_sequence[index][0]])
         self.ui.comboBox_14.setCurrentIndex({"Sigmoid": 0, "ReLU": 1, "Tanh": 2, "Softmax": 3}[self.model_sequence[index][3]])
@@ -115,14 +199,14 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.comboBox_12.setCurrentIndex(0)
 
 
-    def use_pytorch_model(self):
+    def use_nn_model(self):
         try:
             if not self.pytorch_loaded:
                 self.show_critical_msg("Ошибка", "Модель не загружена")
                 return
 
-            values = torch.Tensor(list(map(float, [self.ui.tableWidget_3.item(0, x).text() for x in range(7)]))).unsqueeze(0)
-            output = list([round(x.item(), 5) for x in self.pytorch_model(values)[0]])
+            values = torch.Tensor(list(map(float, [self.ui.tableWidget_3.item(0, x).text() for x in range(self.ui.tableWidget_3.columnCount())]))).unsqueeze(0).to("cuda:0" if self.ui.comboBox_6.currentText() == "CUDA" else "cpu")
+            output = list([round(x.item(), 5) for x in self.nn_model(values)[0]])
             num_1 = "1. Cвяз. с производством\n(Потеря металла)\n"+str(output[0])
             num_2 = "2. Отложения\n(Геометрия)\n"+str(output[1])
             num_3 = "3. Внешние воздействия\n(Потеря металла)\n"+str(output[2])
@@ -154,16 +238,6 @@ class mywindow(QtWidgets.QMainWindow):
                 self.show_critical_msg("Ошибка", "Укажите все числовые значения в формате (число.послезапятой)")
             else:
                 self.show_critical_msg("Ошибка", str(exp))
-
-
-    def load_pytorch_model(self):
-        try:
-            filename, _ = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File', './', 'pytorch model files (*.pt)')  
-            self.pytorch_model.load_state_dict(torch.load(filename))
-            self.pytorch_loaded = True
-            self.show_information_msg("Успешно", "Модель загружена")
-        except Exception as exp:
-            self.show_critical_msg("Ошибка", str(exp))
 
         
     def load_excel_database(self):
@@ -488,15 +562,19 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.pushButton_6.clicked.connect(self.find_offset_Follias)
         self.ui.pushButton_8.clicked.connect(self.find_total_length_pipe_defects)
 
-        self.ui.pushButton_9.clicked.connect(self.use_pytorch_model)
-        self.ui.pushButton_10.clicked.connect(self.load_pytorch_model)
-
+        self.ui.pushButton_9.clicked.connect(self.use_nn_model)
+        self.ui.pushButton_10.clicked.connect(self.load_nn_model)
         self.ui.pushButton_53.clicked.connect(self.create_model)
         self.ui.pushButton_50.clicked.connect(self.save_layer)
-        self.ui.comboBox_12.currentIndexChanged.connect(self.load_layer)
         self.ui.pushButton_51.clicked.connect(self.save_model)
+        self.ui.pushButton_56.clicked.connect(lambda: self.save_model(True))
+        self.ui.pushButton_57.clicked.connect(self.load_nn_model)
+
+        self.ui.pushButton_55.clicked.connect(self.load_dataset)
+        self.ui.pushButton_52.clicked.connect(self.start_training)
 
         self.ui.spinBox.editingFinished.connect(lambda: self.changed_pipeline())
+        self.ui.comboBox_12.currentIndexChanged.connect(self.load_layer)
     
 
     def show_critical_msg(self, Title, Text):

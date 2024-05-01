@@ -1,0 +1,1 @@
+[["LSTM", 7, 32, "ReLU"], ["LSTM", 32, 16, "ReLU"], ["FC", 16, 8, "Sigmoid"], ["FC", 8, 5, "Softmax"], {"optim": "Adam"}]

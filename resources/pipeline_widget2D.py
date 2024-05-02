@@ -71,6 +71,37 @@ class MplCanvas_ver2(QtWidgets.QWidget):
         self.browser.setHtml(fig.to_html(include_plotlyjs='cdn'))
 
 
+class LearningGraph(QtWidgets.QWidget):
+    def __init__(self, xs, ys, names, activation_func = None, labelXY = None, orientation="v", mode='lines+markers', parent=None):
+        super().__init__(parent)
+        self.browser = QtWebEngineWidgets.QWebEngineView(self)
+        self.browser.page().profile().downloadRequested.connect(_on_downloadFunc)
+
+        vlayout = QtWidgets.QVBoxLayout(self)
+        vlayout.addWidget(self.browser)
+
+        self.xs = xs
+        self.ys = ys
+        self.names = names
+        self.orientation = orientation
+        self.activation_func = activation_func
+        self.mode = mode 
+        self.labelXY = labelXY
+        self.show_graph()
+
+    def show_graph(self):
+        fig = graph_objs.Figure()
+        for i in range(len(self.xs)):
+            fig.add_trace(graph_objs.Scatter(x=self.xs[i], y=self.ys[i], mode=self.mode, name=self.names[i]))
+        fig.update_layout(legend_orientation=self.orientation,
+                          legend=dict(x=.5, xanchor="center"),
+                          margin=dict(l=0, r=0, t=0, b=0))
+        if not (self.labelXY is None):
+            fig.update_traces(hoverinfo="all", hovertemplate=self.labelXY[0] + ": %{x}<br>"+self.labelXY[1]+": %{y}")
+        
+        self.browser.setHtml(fig.to_html(include_plotlyjs='cdn'))
+
+
 class MplHeatmap(QtWidgets.QWidget):
     def __init__(self, image, parent=None):
         super().__init__(parent)
